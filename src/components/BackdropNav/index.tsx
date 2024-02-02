@@ -4,7 +4,7 @@ const BackdropNav = () => {
   return (
     <img
       src={bktechBackdrop}
-      className="absolute"
+      className="absolute z-0"
       style={{ right: "-10vw", top: "-15%", width: "500px" }}
     />
   );

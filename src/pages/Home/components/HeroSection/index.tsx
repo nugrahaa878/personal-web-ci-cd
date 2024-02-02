@@ -29,9 +29,15 @@ const HeroSection = () => {
         </p>
 
         <div className="flex gap-4">
-          <img src={linkedin} width={40} />
-          <img src={github} width={40} />
-          <img src={medium} width={40} />
+          <a href="https://www.linkedin.com/in/nugrahaa878/" target="_blank">
+            <img src={linkedin} width={40} />
+          </a>
+          <a href="https://github.com/nugrahaa878" target="_blank">
+            <img src={github} width={40} />
+          </a>
+          <a href="https://medium.com/@nugrahaa878" target="_blank">
+            <img src={medium} width={40} />
+          </a>
         </div>
       </div>
 
