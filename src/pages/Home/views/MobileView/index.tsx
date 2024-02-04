@@ -1,7 +1,7 @@
 import BackdropHero from "../../../../components/BackdropHero";
 import BackdropNav from "../../../../components/BackdropNav";
 import HumbergerMenu from "../../../../components/HumbergerMenu";
-import HeroSection from "../../components/HeroSection";
+import HeroSectionMobile from "../../components/HeroSectionMobile";
 
 const HomeMobileView = () => {
   return (
@@ -9,7 +9,7 @@ const HomeMobileView = () => {
       <HumbergerMenu />
       <BackdropNav />
       <BackdropHero />
-      <HeroSection />
+      <HeroSectionMobile />
     </div>
   );
 };
