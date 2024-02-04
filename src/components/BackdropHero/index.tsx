@@ -1,11 +1,18 @@
 import bktechBackdrop from "../../assets/bktech-backdrop.png";
+import useCheckIsAndroid from "../../hooks/useCheckIsAndroid";
 
 const BackdropHero = () => {
+  const { isAndroid } = useCheckIsAndroid();
+
   return (
     <img
       src={bktechBackdrop}
-      className="absolute"
-      style={{ left: "-15vw", top: "20vh", width: "450px" }}
+      className="absolute z-0"
+      style={{
+        left: `${isAndroid ? "-20vw" : "-15vw"}`,
+        top: `${isAndroid ? "50vh" : "20vh"}`,
+        width: `${isAndroid ? "250px" : "450px"}`,
+      }}
     />
   );
 };

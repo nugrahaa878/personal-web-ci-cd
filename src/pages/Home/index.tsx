@@ -1,17 +1,18 @@
-import BackdropHero from "../../components/BackdropHero";
-import BackdropNav from "../../components/BackdropNav";
-import Navbar from "../../components/Navbar";
-import HeroSection from "./components/HeroSection";
+import { useEffect } from "react";
+import useCheckIsAndroid from "../../hooks/useCheckIsAndroid";
+import HomeMobileView from "./views/MobileView";
+import HomeDesktopView from "./views/DesktopView";
 
 const Homepage = () => {
-  return (
-    <div className="w-screen h-screen overflow-x-hidden overflo relative">
-      <Navbar />
-      <BackdropNav />
-      <BackdropHero />
-      <HeroSection />
-    </div>
-  );
+  const { isAndroid } = useCheckIsAndroid();
+
+  useEffect(() => {
+    console.log({ isAndroid });
+  }, [isAndroid]);
+
+  if (isAndroid) return <HomeMobileView />;
+
+  return <HomeDesktopView />;
 };
 
 export default Homepage;

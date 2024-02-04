@@ -9,7 +9,7 @@ const HeroSection = () => {
   return (
     <div className="flex px-48 py-28 text-darkBlue items-center justify-center gap-24">
       <div className="flex flex-col ">
-        <p className="text-2xl mb-3">
+        <div className="text-2xl mb-3">
           <Typewriter
             options={{
               strings: ["Hello, I'm", "Halo, perkenalkan saya"],
@@ -17,7 +17,7 @@ const HeroSection = () => {
               loop: true,
             }}
           />
-        </p>
+        </div>
         <h2 className="text-5xl font-semibold mb-4">Ari Angga Nugraha</h2>
         <h6 className="text-2xl mb-8 font-semibold">
           Software Engineer at Tokopedia
