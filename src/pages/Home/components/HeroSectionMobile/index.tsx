@@ -29,7 +29,7 @@ const HeroSectionMobile = () => {
         creativity to redefine the digital landscape.
       </p>
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 z-10">
         <a href="https://www.linkedin.com/in/nugrahaa878/" target="_blank">
           <img src={linkedin} width={40} />
         </a>
