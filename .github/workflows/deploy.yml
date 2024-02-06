@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Coba nge log santuy
-        run: echo "Anjaaya udah jago DevOps nih Ari, mantap!"
+        run: echo "Mantap!"
 
       - name: Ini step ke 2 coba nge log lagi
         run: echo "Ini step ke 2 coba nge log lagi"
