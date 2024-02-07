@@ -62,6 +62,9 @@ jobs:
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             publish_dir: ./dist
+
+        - name: Checkout ke gcloud Ari
+          uses: actions/checkout@v4
         
         - name: Setup Gcloud CLI
           uses: google-github-actions/setup-gcloud@v1
