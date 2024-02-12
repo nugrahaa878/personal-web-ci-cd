@@ -9,9 +9,6 @@ jobs:
   build:
     name: Build vite project
     runs-on: ubuntu-latest
-    env:
-      IMAGE_NAME: dockernya-ari
-      PROJECT_ID: personal-website-413007
 
     steps:
       - name: Checkout repository
@@ -52,6 +49,9 @@ jobs:
       needs: build
       runs-on: ubuntu-latest
       if: github.ref == 'refs/heads/master'
+      env:
+        IMAGE_NAME: dockernya-ari
+        PROJECT_ID: personal-website-413007
 
       steps:
         - name: Download artifact website Ari
