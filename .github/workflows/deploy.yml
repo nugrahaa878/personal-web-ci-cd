@@ -9,6 +9,9 @@ jobs:
   build:
     name: Build vite project
     runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: dockernya-ari
+      PROJECT_ID: personal-website-413007
 
     steps:
       - name: Checkout repository
@@ -63,6 +66,7 @@ jobs:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             publish_dir: ./dist
 
+# -------------
         - name: Checkout ke gcloud Ari
           uses: actions/checkout@v4
 
@@ -77,6 +81,20 @@ jobs:
             service_account_email: ${{ secrets.GCP_SA_EMAIL }}
             service_account_key: ${{ secrets.GCP_SA_KEY }}
             project_id: personal-website-413007
+        
+        - name: Build Docker Image
+          run: docker build -t $IMAGE_NAME:latest .
+        
+        - name: Configure Docker Client
+          run: |-
+            gcloud auth configure-docker --quiet
+            gcloud auth configure-docker us-west2-docker.pkg.dev --quiet
 
-        - name: Create Experiment Folder
-          run: mkdir experiment_folder
+        - name: Push Docker Image to Container Registry (GCR)
+          env:
+            GIT_TAG: v0.1.0
+          run: |-
+            docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+            docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+            docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+            docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
