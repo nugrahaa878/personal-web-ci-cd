@@ -130,4 +130,4 @@ jobs:
             region: '${{ env.REGION }}'
             description: '${{ env.GITHUB_COMMIT_MSG }}'
             skaffold_file: 'config/skaffold.yaml'
-            images: 'app=${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.APP }}/${{ env.APP }}:${{ github.sha }}'
+            images: 'app=us-central1.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest'
