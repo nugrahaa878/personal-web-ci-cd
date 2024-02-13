@@ -111,4 +111,8 @@ jobs:
             export PROJECT_ID=$PROJECT_ID
             export REGION=$REGION
             for template in $(ls config/*.template.yaml); do envsubst < ${template} > ${template%%.*}.yaml ; done
+
+        - name: 'Create Cloud Deploy delivery pipeline'
+          run: |-
+            gcloud deploy apply --file config/clouddeploy.yaml --region ${{ env.REGION }}
             
