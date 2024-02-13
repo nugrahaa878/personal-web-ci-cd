@@ -54,6 +54,7 @@ jobs:
         PROJECT_ID: personal-website-413007
         REPO_NAME: images
         REGION: us-central1
+        APP: ini-app
 
       steps:
         - name: Download artifact website Ari
@@ -116,3 +117,6 @@ jobs:
           run: |-
             gcloud deploy apply --file config/clouddeploy.yaml --region ${{ env.REGION }}
             
+        - name: 'Create release name'
+          run: |-
+            echo "RELEASE_NAME=${{ env.APP }}-${GITHUB_SHA::7}-${GITHUB_RUN_NUMBER}" >> ${GITHUB_ENV}
