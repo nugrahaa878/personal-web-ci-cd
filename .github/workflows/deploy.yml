@@ -106,11 +106,9 @@ jobs:
             docker push us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
             docker push us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
 
-        - name: Deploy to GCP Machine
+        - name: 'Render templatised config manifests'
           run: |-
-            gcloud run deploy $REPO_NAME \
-            --region $REGION \
-            --image us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest \
-            --platform "managed" \
-            --quiet
+            export PROJECT_ID=$PROJECT_ID
+            export REGION=$REGION
+            for template in $(ls config/*.template.yaml); do envsubst < ${template} > ${template%%.*}.yaml ; done
             
