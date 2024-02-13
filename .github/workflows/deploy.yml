@@ -54,7 +54,7 @@ jobs:
         PROJECT_ID: personal-website-413007
         REPO_NAME: images
         REGION: us-central1
-        APP: ini-app
+        APP: app
 
       steps:
         - name: Download artifact website Ari
