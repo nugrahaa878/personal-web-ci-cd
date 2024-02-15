@@ -107,10 +107,17 @@ jobs:
             docker push us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
             docker push us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
 
-        - name: Try to ssh to machine
+        - id: 'compute-ssh'
+          name: Try to ssh to machine
           uses: 'google-github-actions/ssh-compute@v1'
           with:
             instance_name: 'machine-personal'
             zone: 'us-central1-c'
             ssh_private_key: '${{ secrets.GCP_SSH_PRIVATE_KEY }}'
-            command: 'mkdir coba-ssh'
+            command: 'echo Hello World ari'
+
+        # Example of using the output
+        - id: 'test'
+          run: |-
+            echo '${{ steps.compute-ssh.outputs.stdout }}'
+            echo '${{ steps.compute-ssh.outputs.stderr }}'
