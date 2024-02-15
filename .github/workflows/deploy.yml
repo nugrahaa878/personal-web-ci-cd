@@ -114,7 +114,7 @@ jobs:
             instance_name: 'machine-personal'
             zone: 'us-central1-c'
             ssh_private_key: '${{ secrets.GCP_SSH_PRIVATE_KEY }}'
-            command: 'git clone https://github.com/nugrahaa878/personal-web-v2'
+            command: 'pwd'
 
         # Example of using the output
         - id: 'test'
