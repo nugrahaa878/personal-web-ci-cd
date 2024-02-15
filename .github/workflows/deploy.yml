@@ -107,27 +107,10 @@ jobs:
             docker push us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
             docker push us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
 
-        - name: 'Render templatised config manifests'
-          run: |-
-            export PROJECT_ID=$PROJECT_ID
-            export REGION=$REGION
-            for template in $(ls config/*.template.yaml); do envsubst < ${template} > ${template%%.*}.yaml ; done
-
-        - name: 'Create Cloud Deploy delivery pipeline'
-          run: |-
-            gcloud deploy apply --file config/clouddeploy.yaml --region ${{ env.REGION }}
-            
-        - name: 'Create release name'
-          run: |-
-            echo "RELEASE_NAME=${{ env.APP }}-${GITHUB_SHA::7}-${GITHUB_RUN_NUMBER}" >> ${GITHUB_ENV}
-
-        - name: 'Create Cloud Deploy release'
-          id: 'release'
-          uses: 'google-github-actions/create-cloud-deploy-release@v0'
+        - name: Try to ssh to machine
+          uses: 'google-github-actions/ssh-compute@v1'
           with:
-            delivery_pipeline: '${{ env.APP }}'
-            name: '${{ env.RELEASE_NAME }}'
-            region: '${{ env.REGION }}'
-            description: '${{ env.GITHUB_COMMIT_MSG }}'
-            skaffold_file: 'config/skaffold.yaml'
-            images: 'app=us-central1-docker.pkg.dev/personal-website-413007/images/dockernya-ari:latest'
+            instance_name: 'machine-personal'
+            zone: 'us-central1-c'
+            ssh_private_key: '${{ secrets.GCP_SSH_PRIVATE_KEY }}'
+            command: 'mkdir coba-ssh'
