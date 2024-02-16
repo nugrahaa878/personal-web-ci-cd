@@ -73,7 +73,7 @@ jobs:
           with:
             service_account_email: ${{ secrets.GCP_SA_EMAIL }}
             service_account_key: ${{ secrets.GCP_SA_KEY }}
-            project_id: $PROJECT_ID
+            project_id: personal-website-413007
         
         - name: Build Docker Image
           run: docker build -t $IMAGE_NAME:latest .
@@ -104,7 +104,7 @@ jobs:
             --image us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG \
             --platform managed \
             --quiet
-            
+
         # SSH to machine
         # - id: 'compute-ssh'
         #   name: Try to ssh to machine
