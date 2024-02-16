@@ -103,7 +103,6 @@ jobs:
             --region $REGION \
             --image us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest   \
             --platform managed \
-            --service 
             --quiet
 
         # SSH to machine
