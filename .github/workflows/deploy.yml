@@ -1,9 +1,12 @@
-name: Deployment website pribadi Ari jago
+name: personal-website-ci-cd
 
 on:
   push:
     branches:
       - master
+
+env:
+  REPO_NAME: personal-website-ci-cd
 
 jobs:
   build:
@@ -25,24 +28,11 @@ jobs:
       - name: Build project
         run: npm run build
       
-      - name: Coba nge log santuy
-        run: echo "Deploying to Github Pages SANTUUYYYY"
-      
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
         with:
           name: production-files
           path: ./dist
-
-  coba:
-    name: Coba aja buat nge log
-    runs-on: ubuntu-latest
-    steps:
-      - name: Coba nge log santuy
-        run: echo "Mantap!"
-
-      - name: Ini step ke 2 coba nge log lagi
-        run: echo "Ini step ke 2 coba nge log lagi"
 
   deploy:
       name: Deploy web nya Ari
@@ -83,7 +73,7 @@ jobs:
           with:
             service_account_email: ${{ secrets.GCP_SA_EMAIL }}
             service_account_key: ${{ secrets.GCP_SA_KEY }}
-            project_id: personal-website-413007
+            project_id: $PROJECT_ID
         
         - name: Build Docker Image
           run: docker build -t $IMAGE_NAME:latest .
@@ -98,7 +88,7 @@ jobs:
             gcloud auth configure-docker --quiet
             gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
 
-        - name: Push Docker Image to Container Registry (GCR)
+        - name: Push Docker Image to Artifact Registry
           env:
             GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
           run: |-
@@ -107,17 +97,22 @@ jobs:
             docker push us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
             docker push us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
 
-        - id: 'compute-ssh'
-          name: Try to ssh to machine
-          uses: 'google-github-actions/ssh-compute@v1'
-          with:
-            instance_name: 'machine-personal'
-            zone: 'us-central1-c'
-            ssh_private_key: '${{ secrets.GCP_SSH_PRIVATE_KEY }}'
-            command: 'pwd'
-
-        # Example of using the output
-        - id: 'test'
+        - name: Deploy to Cloud run
           run: |-
-            echo '${{ steps.compute-ssh.outputs.stdout }}'
-            echo '${{ steps.compute-ssh.outputs.stderr }}'
+            gcloud run deploy $REPO_NAME \
+            --region $REGION \
+            --image us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG \
+            --platform managed \
+            --quiet
+            
+        # SSH to machine
+        # - id: 'compute-ssh'
+        #   name: Try to ssh to machine
+        #   uses: 'google-github-actions/ssh-compute@v1'
+        #   with:
+        #     instance_name: 'machine-personal'
+        #     zone: 'us-central1-c'
+        #     ssh_private_key: '${{ secrets.GCP_SSH_PRIVATE_KEY }}'
+        #     command: 'pwd'
+            # echo '${{ steps.compute-ssh.outputs.stdout }}'
+            # echo '${{ steps.compute-ssh.outputs.stderr }}'

@@ -1,0 +1,7 @@
+# Ignore files and directories commonly used in development
+node_modules
+npm-debug.log
+
+# Ignore Docker-related files
+.dockerignore
+Dockerfile
