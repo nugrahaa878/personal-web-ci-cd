@@ -98,10 +98,13 @@ jobs:
             docker push us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
 
         - name: Deploy to Cloud run
-          uses: 'google-github-actions/deploy-cloudrun@v2'
-          with:
-            service: 'personal-website'
-            image: 'us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest'
+          run: |-
+            gcloud run deploy personal-website \
+            --region $REGION \
+            --image us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest   \
+            --platform managed \
+            --service 
+            --quiet
 
         # SSH to machine
         # - id: 'compute-ssh'
