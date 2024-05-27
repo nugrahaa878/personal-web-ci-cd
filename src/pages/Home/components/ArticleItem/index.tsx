@@ -15,7 +15,7 @@ const ArticleItem = ({ post }: Props) => {
         <p>{post.content}</p>
       </div>
 
-      <div className="w-4/6 min-w-44">
+      <div className="min-w-44 w-60">
         <img src={post.imgLink} alt={`Ilustrasi-${post.title}`} />
       </div>
     </div>

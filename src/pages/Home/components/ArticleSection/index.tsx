@@ -9,7 +9,7 @@ const ArticleSection = () => {
         <div className="h-0.5 bg-gray-900 w-64 rounded-sm" />
       </div>
 
-      <div className="mt-7">
+      <div className="flex flex-col gap-10 mt-7 ">
         {LIST_POST.map((post) => (
           <ArticleItem post={post} key={`${post.title}-${post.date}`} />
         ))}

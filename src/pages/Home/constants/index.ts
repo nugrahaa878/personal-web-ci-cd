@@ -10,4 +10,13 @@ export const LIST_POST: Post[] = [
     section: "Software Engineering",
     title: "Cumulative Layout Shift (CLS)",
   },
+  {
+    content:
+      "The Software Development Life Cycle (SDLC) is a structured process used by software development teams to design, develop, test, deploy, and maintain high-quality software. It's a framework that guides the entire software development process from inception to retirement...",
+    date: "2 Mei 2024",
+    imgLink:
+      "https://media.licdn.com/dms/image/D4D12AQE4vgbksWZWqQ/article-cover_image-shrink_720_1280/0/1706524031531?e=2147483647&v=beta&t=rg_VOcxM3E4qqzZ8sRNHS3ybdliR-c3mKXr5VreDtks",
+    section: "Software Engineering",
+    title: "Software Development Life Cycle (SDLC)",
+  },
 ];
