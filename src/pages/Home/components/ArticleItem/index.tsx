@@ -6,7 +6,12 @@ interface Props {
 
 const ArticleItem = ({ post }: Props) => {
   return (
-    <div className="flex items-center gap-16">
+    <a
+      href={post.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-16"
+    >
       <div className="flex flex-col">
         <p className="italic mb-1">
           {post.section}, {post.date}
@@ -18,7 +23,7 @@ const ArticleItem = ({ post }: Props) => {
       <div className="min-w-44 w-60">
         <img src={post.imgLink} alt={`Ilustrasi-${post.title}`} />
       </div>
-    </div>
+    </a>
   );
 };
 
