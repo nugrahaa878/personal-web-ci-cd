@@ -1,6 +1,5 @@
 import BackdropHero from "../../../../components/BackdropHero";
 import BackdropNav from "../../../../components/BackdropNav";
-import HumbergerMenu from "../../../../components/HumbergerMenu";
 import HeroSectionMobile from "../../components/HeroSectionMobile";
 
 const HomeMobileView = () => {
