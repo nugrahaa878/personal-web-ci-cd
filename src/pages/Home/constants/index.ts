@@ -1,4 +1,4 @@
-import { Post } from "../types";
+import { Post, Project } from "../types";
 
 export const LIST_POST: Post[] = [
   {
@@ -20,5 +20,17 @@ export const LIST_POST: Post[] = [
     section: "Software Engineering",
     title: "Kenapa Harus Clean Code?",
     url: "https://medium.com/@ari-angga/kenapa-harus-clean-code-c3e318aa48e9",
+  },
+];
+
+export const LIST_PROJECTS: Project[] = [
+  {
+    details:
+      "Logbook App for the Faculty of Medicine, Universitas Indonesia. For faster development, I've integrated some features as Web Views. For the Flutter side, I'm utilizing Cubit for state management and implementing separation of concerns for improved readability and maintainability. On the web side, we are using React with Typescript, implementing React Context for state management, and utilizing the Chakra-UI component library.",
+    imgUrl: "https://i.ibb.co.com/m98zxp7/logbook-logo.png",
+    techStack: ["Flutter", "React", "Typescript", "Cubit"],
+    title: "Logbook Anestesi UI",
+    playStore: "play.google.com/store/apps/details?id=com.mobile.logbook_app",
+    webLink: "https://anestesi-ui.id/",
   },
 ];

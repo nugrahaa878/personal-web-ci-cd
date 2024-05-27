@@ -6,3 +6,13 @@ export interface Post {
   imgLink: string;
   url: string;
 }
+
+export interface Project {
+  title: string;
+  playStore?: string;
+  webLink?: string;
+  appStore?: string;
+  details: string;
+  techStack: string[];
+  imgUrl: string;
+}
