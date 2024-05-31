@@ -35,12 +35,14 @@ const ProjectItem = ({ project }: Props) => {
             </div>
           )}
           {project.webLink && (
-            <div className="flex items-center gap-2">
-              <div>
-                <img src={webImg} width={15} alt="web" />
+            <a href={project.webLink} target="_blank">
+              <div className="flex items-center gap-2">
+                <div>
+                  <img src={webImg} width={15} alt="web" />
+                </div>
+                <p className="italic text-xs">{project.webLink}</p>
               </div>
-              <p className="italic text-xs">{project.webLink}</p>
-            </div>
+            </a>
           )}
         </div>
 

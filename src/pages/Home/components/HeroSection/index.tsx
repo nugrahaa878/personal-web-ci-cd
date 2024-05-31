@@ -7,7 +7,7 @@ import medium from "../../../../assets/medium.png";
 
 const HeroSection = () => {
   return (
-    <div className="flex px-48 py-28 text-darkBlue items-center justify-center gap-24">
+    <div className="flex px-48 mb-40 mt-40 text-darkBlue items-center justify-center gap-24">
       <div className="flex flex-col ">
         <div className="text-2xl mb-3">
           <Typewriter

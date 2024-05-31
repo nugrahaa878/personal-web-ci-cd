@@ -6,7 +6,7 @@ const ArticleSection = () => {
   const mediumLink = "https://ari-angga.medium.com/";
 
   return (
-    <div className="px-48 py-28">
+    <div className="px-48 mb-40 pt-14" id="articles">
       <div className="flex gap-6 items-center">
         <h4 className="text-2xl font-semibold">Recently Post</h4>
         <div className="h-0.5 bg-gray-900 w-64 rounded-sm" />

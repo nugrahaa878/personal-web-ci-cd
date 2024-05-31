@@ -33,4 +33,12 @@ export const LIST_PROJECTS: Project[] = [
     playStore: "play.google.com/store/apps/details?id=com.mobile.logbook_app",
     webLink: "https://anestesi-ui.id/",
   },
+  {
+    details:
+      "In this project, I have demonstrated proficiency in implementing end-to-end CI/CD processes from scratch and integrating them seamlessly with cloud services such as Google Cloud Platform (GCP). Ive created and set up my own GitHub workflow file to build the Vite project. Afterward, I integrated it with Cloud Run on GCP so that any changes in my repository will trigger a build and push to Cloud Run, updating my website automatically.",
+    imgUrl: "https://arinugraha.dev/src/assets/avatar.png",
+    techStack: ["GCP", "Cloud Run", "Typescript", "Docker"],
+    title: "Portfolio Website",
+    webLink: "https://arinugraha.dev/",
+  },
 ];
