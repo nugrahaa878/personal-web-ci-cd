@@ -45,8 +45,6 @@ async function createServer() {
 
       const appHtml = await render(url);
 
-      console.log("999 appHtml", appHtml);
-
       const html = template.replace(`<!--ssr-outlet-->`, appHtml.html);
 
       // 6. Send the rendered HTML back.
