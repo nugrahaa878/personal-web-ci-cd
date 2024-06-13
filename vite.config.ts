@@ -3,6 +3,9 @@ import { defineConfig } from "vite";
 // https://vitejs.dev/config/
 export default defineConfig(() => {
   return {
+    ssr: {
+      noExternal: "true",
+    },
     plugins: [],
     base: "/",
     server: {
