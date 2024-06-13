@@ -24,10 +24,10 @@ jobs:
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
-      
+
       - name: Build project
-        run: npm run build
-      
+        run: npm run build:server
+
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
         with:
@@ -35,84 +35,84 @@ jobs:
           path: ./dist
 
   deploy:
-      name: Deploy web nya Ari
-      needs: build
-      runs-on: ubuntu-latest
-      if: github.ref == 'refs/heads/master'
-      env:
-        IMAGE_NAME: dockernya-ari
-        PROJECT_ID: personal-website-413007
-        REPO_NAME: images
-        REGION: us-central1
-        APP: app
+    name: Deploy web nya Ari
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    env:
+      IMAGE_NAME: dockernya-ari
+      PROJECT_ID: personal-website-413007
+      REPO_NAME: images
+      REGION: us-central1
+      APP: app
 
-      steps:
-        - name: Download artifact website Ari
-          uses: actions/download-artifact@v2
-          with:
-            name: production-files
-            path: ./dist
-          
-        - name: Deploy to Github pages web nya Ari
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: ./dist
+    steps:
+      - name: Download artifact website Ari
+        uses: actions/download-artifact@v2
+        with:
+          name: production-files
+          path: ./dist
 
-# -------------
-        - name: Checkout ke gcloud Ari
-          uses: actions/checkout@v4
+      - name: Deploy to Github pages web nya Ari
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
 
-        - name: Google Auth
-          uses: google-github-actions/auth@v0
-          with:
-            credentials_json: ${{ secrets.GCP_SA_KEY }}
-        
-        - name: Setup Gcloud CLI
-          uses: google-github-actions/setup-gcloud@v1
-          with:
-            service_account_email: ${{ secrets.GCP_SA_EMAIL }}
-            service_account_key: ${{ secrets.GCP_SA_KEY }}
-            project_id: personal-website-413007
-        
-        - name: Build Docker Image
-          run: docker build -t $IMAGE_NAME:latest .
+      # -------------
+      - name: Checkout ke gcloud Ari
+        uses: actions/checkout@v4
 
-        - name: Automatic Tagging of Rele ases
-          id: increment-git-tag
-          run: |
-            bash ./scripts/git_update.sh -v patch
+      - name: Google Auth
+        uses: google-github-actions/auth@v0
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-        - name: Configure Docker Client
-          run: |-
-            gcloud auth configure-docker --quiet
-            gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
+      - name: Setup Gcloud CLI
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: personal-website-413007
 
-        - name: Push Docker Image to Artifact Registry
-          env:
-            GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-          run: |-
-            docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
-            docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
-            docker push us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
-            docker push us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
+      - name: Build Docker Image
+        run: docker build -t $IMAGE_NAME:latest .
 
-        - name: Deploy to Cloud run
-          run: |-
-            gcloud run deploy personal-website \
-            --region $REGION \
-            --image us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest   \
-            --platform managed \
-            --quiet
+      - name: Automatic Tagging of Rele ases
+        id: increment-git-tag
+        run: |
+          bash ./scripts/git_update.sh -v patch
 
-        # SSH to machine
-        # - id: 'compute-ssh'
-        #   name: Try to ssh to machine
-        #   uses: 'google-github-actions/ssh-compute@v1'
-        #   with:
-        #     instance_name: 'machine-personal'
-        #     zone: 'us-central1-c'
-        #     ssh_private_key: '${{ secrets.GCP_SSH_PRIVATE_KEY }}'
-        #     command: 'pwd'
-            # echo '${{ steps.compute-ssh.outputs.stdout }}'
-            # echo '${{ steps.compute-ssh.outputs.stderr }}'
+      - name: Configure Docker Client
+        run: |-
+          gcloud auth configure-docker --quiet
+          gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
+
+      - name: Push Docker Image to Artifact Registry
+        env:
+          GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+        run: |-
+          docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
+          docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
+          docker push us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
+          docker push us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
+
+      - name: Deploy to Cloud run
+        run: |-
+          gcloud run deploy personal-website \
+          --region $REGION \
+          --image us-central1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest   \
+          --platform managed \
+          --quiet
+
+      # SSH to machine
+      # - id: 'compute-ssh'
+      #   name: Try to ssh to machine
+      #   uses: 'google-github-actions/ssh-compute@v1'
+      #   with:
+      #     instance_name: 'machine-personal'
+      #     zone: 'us-central1-c'
+      #     ssh_private_key: '${{ secrets.GCP_SSH_PRIVATE_KEY }}'
+      #     command: 'pwd'
+      # echo '${{ steps.compute-ssh.outputs.stdout }}'
+      # echo '${{ steps.compute-ssh.outputs.stderr }}'
