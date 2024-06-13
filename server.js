@@ -7,11 +7,7 @@ import { createServer as createViteServer } from "vite";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function createServer() {
-  console.log("999 LINE 10");
-
   const app = express();
-
-  console.log("999 LINE 14");
 
   // Create Vite server in middleware mode and configure the app type as
   // 'custom', disabling Vite's own HTML serving logic so parent server
