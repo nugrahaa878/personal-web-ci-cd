@@ -21,8 +21,6 @@ async function createServer() {
     appType: "custom",
   });
 
-  console.log("999 LINE 24");
-
   // Use vite's connect instance as middleware. If you use your own
   // express router (express.Router()), you should use router.use
   // When the server restarts (for example after the user modifies
@@ -31,14 +29,8 @@ async function createServer() {
   // middlewares). The following is valid even after restarts.
   app.use(vite.middlewares);
 
-  console.log("999 LINE 34");
-
   app.use("*", async (req, res, next) => {
-    console.log("999 LINE 37");
-
     const url = req.originalUrl;
-
-    console.log("999 LINE 31");
 
     try {
       // 1. Read index.html
@@ -51,13 +43,11 @@ async function createServer() {
 
       const { render } = await vite.ssrLoadModule("/src/entry-server.tsx");
 
-      console.log("999 LINE 422", url);
-
       const appHtml = await render(url);
 
-      console.log("999 after render", { appHtml });
+      console.log("999 appHtml", appHtml);
 
-      const html = template.replace(`<!--ssr-outlet-->`, appHtml);
+      const html = template.replace(`<!--ssr-outlet-->`, appHtml.html);
 
       // 6. Send the rendered HTML back.
       res.status(200).set({ "Content-Type": "text/html" }).end(html);
