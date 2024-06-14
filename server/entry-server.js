@@ -34,7 +34,8 @@ const BackdropHero = () => {
         left: `${isAndroid ? "-20vw" : "-15vw"}`,
         top: `${isAndroid ? "50vh" : "20vh"}`,
         width: `${isAndroid ? "250px" : "450px"}`
-      }
+      },
+      alt: "backdrop-hero"
     }
   );
 };
@@ -49,7 +50,8 @@ const BackdropNav = () => {
         right: `${isAndroid ? "-20vw" : "-10vw"}`,
         top: `${isAndroid ? "-4%" : "-15%"}`,
         width: `${isAndroid ? "250px" : "500px"}`
-      }
+      },
+      alt: "backdrop-nav"
     }
   );
 };
@@ -78,9 +80,9 @@ const HeroSectionMobile = () => {
       "creativity to redefine the digital landscape."
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "flex gap-4 z-10", children: [
-      /* @__PURE__ */ jsx("a", { href: "https://www.linkedin.com/in/nugrahaa878/", target: "_blank", children: /* @__PURE__ */ jsx("img", { src: linkedin, width: 40 }) }),
-      /* @__PURE__ */ jsx("a", { href: "https://github.com/nugrahaa878", target: "_blank", children: /* @__PURE__ */ jsx("img", { src: github, width: 40 }) }),
-      /* @__PURE__ */ jsx("a", { href: "https://medium.com/@nugrahaa878", target: "_blank", children: /* @__PURE__ */ jsx("img", { src: medium, width: 40 }) })
+      /* @__PURE__ */ jsx("a", { href: "https://www.linkedin.com/in/nugrahaa878/", target: "_blank", children: /* @__PURE__ */ jsx("img", { src: linkedin, width: 40, alt: "linkedin" }) }),
+      /* @__PURE__ */ jsx("a", { href: "https://github.com/nugrahaa878", target: "_blank", children: /* @__PURE__ */ jsx("img", { src: github, width: 40, alt: "github" }) }),
+      /* @__PURE__ */ jsx("a", { href: "https://medium.com/@nugrahaa878", target: "_blank", children: /* @__PURE__ */ jsx("img", { src: medium, width: 40, alt: "medium" }) })
     ] })
   ] });
 };
@@ -165,9 +167,9 @@ const HeroSection = () => {
         "creativity to redefine the digital landscape."
       ] }),
       /* @__PURE__ */ jsxs("div", { className: "flex gap-4", children: [
-        /* @__PURE__ */ jsx("a", { href: "https://www.linkedin.com/in/nugrahaa878/", target: "_blank", children: /* @__PURE__ */ jsx("img", { src: linkedin, width: 40 }) }),
-        /* @__PURE__ */ jsx("a", { href: "https://github.com/nugrahaa878", target: "_blank", children: /* @__PURE__ */ jsx("img", { src: github, width: 40 }) }),
-        /* @__PURE__ */ jsx("a", { href: "https://medium.com/@nugrahaa878", target: "_blank", children: /* @__PURE__ */ jsx("img", { src: medium, width: 40 }) })
+        /* @__PURE__ */ jsx("a", { href: "https://www.linkedin.com/in/nugrahaa878/", target: "_blank", children: /* @__PURE__ */ jsx("img", { src: linkedin, width: 40, alt: "linkedin" }) }),
+        /* @__PURE__ */ jsx("a", { href: "https://github.com/nugrahaa878", target: "_blank", children: /* @__PURE__ */ jsx("img", { src: github, width: 40, alt: "github" }) }),
+        /* @__PURE__ */ jsx("a", { href: "https://medium.com/@nugrahaa878", target: "_blank", children: /* @__PURE__ */ jsx("img", { src: medium, width: 40, alt: "medium" }) })
       ] })
     ] }),
     /* @__PURE__ */ jsx("img", { src: avatar3d, width: 270, alt: "avatar" })
