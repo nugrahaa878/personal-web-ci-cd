@@ -73,7 +73,7 @@ const HeroSectionMobile = () => {
     ) }),
     /* @__PURE__ */ jsx("h2", { className: "text-3xl font-semibold mb-4", children: "Ari Angga Nugraha" }),
     /* @__PURE__ */ jsx("img", { src: avatar3d, width: 200, alt: "avatar", className: "mb-8" }),
-    /* @__PURE__ */ jsx("h6", { className: "text-md mb-5 font-semibold", children: "Software Engineer at Tokopedia" }),
+    /* @__PURE__ */ jsx("h1", { className: "text-md mb-5 font-semibold", children: "Software Engineer at Tokopedia" }),
     /* @__PURE__ */ jsxs("p", { className: "mb-7 text-xs text-center px-14", children: [
       "I shape ideas into compelling user interfaces, seamlessly blending code and ",
       /* @__PURE__ */ jsx("br", {}),
