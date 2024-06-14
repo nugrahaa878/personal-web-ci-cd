@@ -20,9 +20,9 @@ const HeroSectionMobile = () => {
       <h2 className="text-3xl font-semibold mb-4">Ari Angga Nugraha</h2>
       <img src={avatar3d} width={200} alt="avatar" className="mb-8" />
 
-      <h6 className="text-md mb-5 font-semibold">
+      <h1 className="text-md mb-5 font-semibold">
         Software Engineer at Tokopedia
-      </h6>
+      </h1>
       <p className="mb-7 text-xs text-center px-14">
         I shape ideas into compelling user interfaces, seamlessly blending code
         and <br />
