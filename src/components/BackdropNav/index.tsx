@@ -13,6 +13,7 @@ const BackdropNav = () => {
         top: `${isAndroid ? "-4%" : "-15%"}`,
         width: `${isAndroid ? "250px" : "500px"}`,
       }}
+      alt="backdrop-nav"
     />
   );
 };

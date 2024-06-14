@@ -13,6 +13,7 @@ const BackdropHero = () => {
         top: `${isAndroid ? "50vh" : "20vh"}`,
         width: `${isAndroid ? "250px" : "450px"}`,
       }}
+      alt="backdrop-hero"
     />
   );
 };

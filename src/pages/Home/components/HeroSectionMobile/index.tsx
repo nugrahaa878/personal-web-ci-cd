@@ -31,13 +31,13 @@ const HeroSectionMobile = () => {
 
       <div className="flex gap-4 z-10">
         <a href="https://www.linkedin.com/in/nugrahaa878/" target="_blank">
-          <img src={linkedin} width={40} />
+          <img src={linkedin} width={40} alt="linkedin" />
         </a>
         <a href="https://github.com/nugrahaa878" target="_blank">
-          <img src={github} width={40} />
+          <img src={github} width={40} alt="github" />
         </a>
         <a href="https://medium.com/@nugrahaa878" target="_blank">
-          <img src={medium} width={40} />
+          <img src={medium} width={40} alt="medium" />
         </a>
       </div>
     </div>
